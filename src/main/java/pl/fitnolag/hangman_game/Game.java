@@ -2,6 +2,7 @@ package pl.fitnolag.hangman_game;
 
 import org.apache.logging.log4j.util.StringBuilders;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Game {
@@ -29,7 +30,6 @@ public class Game {
             }
         }
         return result.toString();
-
     }
     public void guessLetter(char letter) {
        char upper = Character.toUpperCase(letter);
@@ -41,6 +41,20 @@ public class Game {
        if (wordToGuess.contains(String.valueOf(upper))) {
            guessedLetters.add(upper);
            System.out.println("trafileś");
+
+           boolean allGuessed = true;
+           for (char c : wordToGuess.toCharArray()) {
+               if (c != ' ' && !guessedLetters.contains(c)) {
+                   allGuessed = false;
+                   break;
+               }
+           }
+           if (allGuessed) {
+               isWin = true;
+               isGameOver = true;
+               System.out.println("Gratulacje Wygrywasz");
+           }
+
        } else {
            wrongLetters.add(upper);
            System.out.println("błąd");
@@ -49,5 +63,25 @@ public class Game {
        if (mistakeCount >= maxMistakes){
            isGameOver = true;
         }
+        HangmanState.printStage(mistakeCount);
+    }
+    public int getMistakeCount() {
+        return mistakeCount;
+    }
+
+    public boolean isGameOver() {
+        return isGameOver;
+    }
+
+    public boolean isWin() {
+        return isWin;
+    }
+
+    public Game(String wordToGuess) {
+        this.wordToGuess = wordToGuess.toUpperCase();
+        this.guessedLetters = new HashSet<>();
+        this.wrongLetters = new HashSet<>();
+        this.isGameOver = false;
+        this.isWin = false;
     }
 }
