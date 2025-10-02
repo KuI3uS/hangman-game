@@ -1,7 +1,5 @@
 package pl.fitnolag.hangman_game;
 
-import org.apache.logging.log4j.util.StringBuilders;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -81,6 +79,15 @@ public class Game {
         this.wordToGuess = wordToGuess.toUpperCase();
         this.guessedLetters = new HashSet<>();
         this.wrongLetters = new HashSet<>();
+        this.isGameOver = false;
+        this.isWin = false;
+    }
+    public void reset(String newWord) {
+        this.wordToGuess = newWord.toUpperCase();
+        this.guessedLetters.clear();
+        this.wrongLetters.clear();
+        this.mistakeCount = 0;
+        this.maxMistakes = 7;
         this.isGameOver = false;
         this.isWin = false;
     }
