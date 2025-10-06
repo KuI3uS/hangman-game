@@ -10,7 +10,10 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+        "http://localhost:3000",
+        "https://hangman-game-one-taupe.vercel.app"
+})
 @RestController
 @RequestMapping("/game")
 public class GameController {

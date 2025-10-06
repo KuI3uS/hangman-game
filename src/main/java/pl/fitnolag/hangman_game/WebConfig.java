@@ -13,7 +13,10 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://hangman-game-one-taupe.vercel.app")
+                        .allowedOrigins(
+                                "http://localhost:3000",
+                                "https://hangman-game-one-taupe.vercel.app"
+                        )
                         .allowedMethods("*");
             }
         };
