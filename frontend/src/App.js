@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+const BACKEND_URL = "https://hangman-backend-ni0a.onrender.com";
 
 function App() {
   const [game, setGame] = useState(null);
     const [letter, setLetter] = useState("");
 
+
   useEffect(() => {
-    axios.get("/game/start")
+      axios.get(`${BACKEND_URL}/game/start`)
         .then(res => {
           setGame(res.data);
         })
@@ -23,7 +25,7 @@ function App() {
             return;
         }
 
-        axios.post("/game/guess", {
+        axios.post(`${BACKEND_URL}/game/guess`, {
             gameId: game.gameId,
             letter: letter
         })
